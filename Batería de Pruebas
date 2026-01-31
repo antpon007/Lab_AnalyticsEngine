@@ -1,0 +1,22 @@
+Ejercicio 1: El Test de Eficiencia de Lectura
+1. Ve a la pestaña Consulta de Columnas.
+2. Selecciona todas las columnas y ejecuta. Anota el tiempo. ---> 0.61s
+3. Ahora selecciona solo una columna (ej: Clics) y ejecuta. ---> 0.47
+4. Responde: ¿Por qué el tiempo disminuye? En un escenario real con 1 Terabyte de
+datos, ¿qué impacto tendría esto en el coste de la nube?  ---> El tiempo disminuye porque el sistema reduce drásticamente el I/O al leer solo las columnas necesarias. En escenarios de 1 TB, esto implica menos disco, menos red y menos cómputo, lo que se traduce directamente en una reducción significativa del coste en la nube.
+
+
+Ejercicio 2: Ingesta Masiva y Consistencia
+1. Registra 3 nuevos clientes desde el panel lateral.
+2. Verifica en la pestaña de Analítica que el gráfico se actualiza automáticamente.
+3. Reflexión: En este modelo, cada vez que insertas un usuario, escribes en 3 "archivos"
+diferentes (uno por familia). ¿Qué pasaría si la conexión se corta a mitad? Investiga
+brevemente qué es la escritura atómica.
+---> Si la conexión se corta a mitad de una escritura no atómica, el sistema puede quedar en un estado inconsistente. La escritura atómica evita esto garantizando que la operación se complete totalmente o no se aplique, manteniendo la integridad de los datos incluso ante fallos.
+
+
+Ejercicio 3: Análisis de Agregación
+1. Inserta un cliente con un gasto de 5000 en la ciudad de Sevilla.
+2. Observa el gráfico de barras.
+3. Pregunta Técnica: Para generar ese gráfico, ¿el sistema ha tenido que procesar la
+columna "Nombre" o "IP"? ¿Cómo ayuda esto a la privacidad de datos (GDPR)? ---> Para generar el gráfico, el sistema solo procesa las columnas Ciudad y Gasto_Publicitario. No se leen datos personales como Nombre o IP, lo que cumple el principio de minimización de datos del GDPR y reduce el riesgo de exposición innecesaria.
